@@ -52,8 +52,8 @@ class Utils
         if(!self::zipModuleLoaded()) {
             throw new Exception("The ZipArchive extension is not loaded. Load the extension or use the flat wurfl.xml file");
         }
-        $tmpDir = FileUtils::getTempDir();
-        $zip = new ZipArchive();
+        $tmpDir = \Wurfl\FileUtils::getTempDir();
+        $zip = new \ZipArchive();
 
         if ($zip->open($filename) !== true) {
             throw new Exception("The Zip file <$filename> could not be opened");
@@ -68,7 +68,7 @@ class Utils
         $zip->extractTo($tmpDir);
         $zip->close();
         
-        return FileUtils::cleanFilename($tmpDir.DIRECTORY_SEPARATOR.$wurflFile);
+        return \Wurfl\FileUtils::cleanFilename($tmpDir.DIRECTORY_SEPARATOR.$wurflFile);
     }
     
     /**
